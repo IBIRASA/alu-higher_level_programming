@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-This is a square class file
+This is a file with a square class
 """
 
 
 class Square:
     """
-    class of accessing and updating the attribute
+    Class that prints a square
     """
     def __init__(self, size=0):
         self.__size = size
@@ -25,3 +25,10 @@ class Square:
 
     def area(self):
         return self.__size ** 2
+
+    def my_print(self):
+        if self.__size == 0:
+            print()
+        else:
+            for _ in range(self.__size):
+                print("#" * self.__size)
