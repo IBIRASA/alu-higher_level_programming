@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""rread file"""
+"""defines function to read text file and prints to stdout"""
 
 
 def read_file(filename=""):
-    """read file"""
+    """reads text file and prints to stdout"""
     with open(filename) as f:
-        line = f.read()
-        print(line, end="")
+        print(f.read(), end="")
