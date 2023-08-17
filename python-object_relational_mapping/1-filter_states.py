@@ -1,31 +1,29 @@
 #!/usr/bin/python3
 """
-    Create a that lists all states with a name starting with N
+Lists all states with a name starting with
+N (upper N) from the database hbtn_0e_0_usa
 """
 
+if __name__ == '__main__':
+    from sys import argv
+    import MySQLdb as mysql
 
-import sys
-import MySQLdb
+    try:
+        db = mysql.connect(host='localhost', port=3306, user=argv[1],
+                           passwd=argv[2], db=argv[3])
+    except Exception:
+        print('Failed to connect to the database')
+        exit(0)
 
-if __name__ == "__main__":
-    conn = MySQLdb.connect(
-       user=sys.argv[1],
-       password=sys.argv[2],
-       db=sys.argv[3],
-       host="localhost",
-       port=3306
-    )
+    cursor = db.cursor()
 
-    cur = conn.cursor()
+    cursor.execute("SELECT * FROM states \
+                    WHERE name LIKE BINARY 'N%' ORDER BY id ASC;")
 
-    cur.execute("SELECT * FROM states \
-        WHERE name LIKE BINARY 'N%' \
-        ORDER BY id ASC")
+    result_query = cursor.fetchall()
 
-    states = cur.fetchall()
+    for row in result_query:
+        print(row)
 
-    for state in states:
-        print(state)
-
-    cur.close()
-    conn.close()
+    cursor.close()
+    db.close()
