@@ -2,4 +2,4 @@
 const var1 = 'C is fun ';
 const var2 = 'Python is cool';
 const var3 = 'Javascript is amazing';
-console.log(var1,var2,var3);
+console.log(var1, var2, var3);
